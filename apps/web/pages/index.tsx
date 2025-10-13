@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ProductCard } from '../components/ProductCard';
+import { Header } from '../components/Header';
 
 interface Product {
   id: string;
@@ -35,50 +36,58 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="container">
-        <div className="loading">Loading products...</div>
-        <style jsx>{`
-          .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-          }
-          .loading {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #666;
-          }
-        `}</style>
-      </div>
+      <>
+        <Header />
+        <div className="container">
+          <div className="loading">Loading products...</div>
+          <style jsx>{`
+            .container {
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 2rem;
+            }
+            .loading {
+              text-align: center;
+              font-size: 1.2rem;
+              color: #666;
+            }
+          `}</style>
+        </div>
+      </>
     );
   }
 
   if (error) {
     return (
-      <div className="container">
-        <div className="error">Error: {error}</div>
-        <style jsx>{`
-          .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-          }
-          .error {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #e74c3c;
-          }
-        `}</style>
-      </div>
+      <>
+        <Header />
+        <div className="container">
+          <div className="error">Error: {error}</div>
+          <style jsx>{`
+            .container {
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 2rem;
+            }
+            .error {
+              text-align: center;
+              font-size: 1.2rem;
+              color: #e74c3c;
+            }
+          `}</style>
+        </div>
+      </>
     );
   }
 
   return (
-    <div className="container">
-      <header className="header">
-        <h1>Barebones Store</h1>
-        <p>Welcome to our amazing product catalog</p>
-      </header>
+    <>
+      <Header />
+      <div className="container">
+        <header className="header">
+          <h1>Welcome to Barebones Store</h1>
+          <p>Discover our amazing product catalog</p>
+        </header>
 
       <main className="main">
         {products.length === 0 ? (
@@ -170,6 +179,7 @@ export default function Home() {
           }
         }
       `}</style>
-    </div>
+      </div>
+    </>
   );
 }

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useCart } from '../contexts/CartContext';
+import { useToast } from '../contexts/ToastContext';
 
 interface Product {
   id: string;
@@ -15,18 +17,27 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
+  const { addItem, isInCart, getItemQuantity } = useCart();
+  const { showSuccess, showError } = useToast();
 
   const handleAddToCart = async () => {
     setIsLoading(true);
     
     try {
-      // Simulate API call - replace with actual cart logic
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Add item to cart
+      addItem({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        imageUrl: product.imageUrl
+      });
       
+      showSuccess(`${product.title} added to cart!`);
       setAddedToCart(true);
       setTimeout(() => setAddedToCart(false), 2000);
     } catch (error) {
       console.error('Failed to add to cart:', error);
+      showError('Failed to add item to cart');
     } finally {
       setIsLoading(false);
     }
@@ -70,13 +81,28 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="product-footer">
           <span className="product-price">{formatPrice(product.price)}</span>
           
-          <button 
-            className={`add-to-cart-btn ${addedToCart ? 'added' : ''}`}
-            onClick={handleAddToCart}
-            disabled={isLoading || addedToCart}
-          >
-            {isLoading ? 'Adding...' : addedToCart ? 'Added!' : 'Add to Cart'}
-          </button>
+          <div className="cart-controls">
+            {isInCart(product.id) ? (
+              <div className="quantity-info">
+                <span className="in-cart">In cart: {getItemQuantity(product.id)}</span>
+                <button 
+                  className="add-more-btn"
+                  onClick={handleAddToCart}
+                  disabled={isLoading}
+                >
+                  {isLoading ? 'Adding...' : 'Add More'}
+                </button>
+              </div>
+            ) : (
+              <button 
+                className={`add-to-cart-btn ${addedToCart ? 'added' : ''}`}
+                onClick={handleAddToCart}
+                disabled={isLoading || addedToCart}
+              >
+                {isLoading ? 'Adding...' : addedToCart ? 'Added!' : 'Add to Cart'}
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
@@ -194,6 +220,46 @@ export function ProductCard({ product }: ProductCardProps) {
           background: #27ae60;
         }
 
+        .cart-controls {
+          display: flex;
+          align-items: center;
+        }
+
+        .quantity-info {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          align-items: stretch;
+        }
+
+        .in-cart {
+          font-size: 0.85rem;
+          color: #27ae60;
+          font-weight: 500;
+          text-align: center;
+        }
+
+        .add-more-btn {
+          background: #3498db;
+          color: white;
+          border: none;
+          padding: 0.5rem 1rem;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 0.85rem;
+          font-weight: 500;
+          transition: all 0.2s ease;
+        }
+
+        .add-more-btn:hover:not(:disabled) {
+          background: #2980b9;
+        }
+
+        .add-more-btn:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+
         @media (max-width: 768px) {
           .product-info {
             padding: 1rem;
@@ -205,7 +271,11 @@ export function ProductCard({ product }: ProductCardProps) {
             align-items: stretch;
           }
           
-          .add-to-cart-btn {
+          .add-to-cart-btn, .add-more-btn {
+            width: 100%;
+          }
+
+          .cart-controls {
             width: 100%;
           }
         }
