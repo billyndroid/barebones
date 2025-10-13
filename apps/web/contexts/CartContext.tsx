@@ -24,6 +24,7 @@ type CartAction =
 interface CartContextType {
   state: CartState;
   addItem: (item: Omit<CartItem, 'quantity'>) => void;
+  addToCart: (item: Omit<CartItem, 'quantity'>, quantity?: number) => Promise<void>;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
@@ -144,9 +145,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     return item ? item.quantity : 0;
   };
 
+  const addToCart = async (item: Omit<CartItem, 'quantity'>, quantity: number = 1) => {
+    for (let i = 0; i < quantity; i++) {
+      addItem(item);
+    }
+  };
+
   const value: CartContextType = {
     state,
     addItem,
+    addToCart,
     removeItem,
     updateQuantity,
     clearCart,

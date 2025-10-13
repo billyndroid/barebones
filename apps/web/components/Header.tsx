@@ -22,6 +22,9 @@ export function Header() {
           <nav className="nav">
             <a href="/">Home</a>
             <a href="/products">Products</a>
+            <a href="/categories">Categories</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
           </nav>
           
           <div className="header-actions">
@@ -37,6 +40,7 @@ export function Header() {
                   <div className="user-dropdown">
                     <a href="/profile">Profile</a>
                     <a href="/orders">Orders</a>
+                    <a href="/wishlist">Wishlist</a>
                     <button onClick={logout} className="logout-btn">Logout</button>
                   </div>
                 )}
