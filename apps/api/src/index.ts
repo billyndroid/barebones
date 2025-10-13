@@ -13,7 +13,7 @@ const fastify = Fastify({
 fastify.register(cors, {
   origin: process.env.NODE_ENV === 'production' 
     ? ['https://your-domain.com'] 
-    : ['http://localhost:3000']
+    : ['http://localhost:3000', 'http://localhost:3002']
 });
 
 // Register routes

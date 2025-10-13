@@ -1,6 +1,7 @@
 import { FastifyPluginAsync } from 'fastify';
 import { prisma } from '../prisma/client';
 import { shopifyService } from '../services/shopifyService';
+import { seedProducts } from '../seed';
 
 export const productRoutes: FastifyPluginAsync = async (fastify) => {
   // Get all products
@@ -92,6 +93,21 @@ export const productRoutes: FastifyPluginAsync = async (fastify) => {
     } catch (error) {
       fastify.log.error(error);
       return reply.status(500).send({ error: 'Failed to search products' });
+    }
+  });
+
+  // Seed dummy products (for development)
+  fastify.post('/seed', async (request, reply) => {
+    try {
+      await seedProducts();
+      const productCount = await prisma.product.count();
+      return { 
+        message: 'Dummy products seeded successfully', 
+        totalProducts: productCount 
+      };
+    } catch (error) {
+      fastify.log.error(error);
+      return reply.status(500).send({ error: 'Failed to seed products' });
     }
   });
 };
