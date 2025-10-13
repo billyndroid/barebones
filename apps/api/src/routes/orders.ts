@@ -143,6 +143,12 @@ export const orderRoutes: FastifyPluginAsync = async (fastify) => {
     const { id } = request.params;
     const { status } = request.body as { status: string };
 
+    // Validate status
+    const validStatuses = ['PENDING', 'CONFIRMED', 'SHIPPED', 'DELIVERED', 'CANCELLED'];
+    if (!validStatuses.includes(status)) {
+      return reply.status(400).send({ error: 'Invalid status value' });
+    }
+
     try {
       const order = await prisma.order.findFirst({
         where: { 
@@ -157,7 +163,7 @@ export const orderRoutes: FastifyPluginAsync = async (fastify) => {
 
       const updatedOrder = await prisma.order.update({
         where: { id },
-        data: { status: status as any },
+        data: { status },
         include: {
           orderItems: {
             include: {
