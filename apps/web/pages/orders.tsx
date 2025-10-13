@@ -2,31 +2,31 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
 import { Header } from '../components/Header';
+import { OrderCard } from '../components/OrderCard';
+import { Button } from '../components/UIComponents';
 
 interface OrderItem {
   id: string;
+  title: string;
   quantity: number;
   price: number;
-  product: {
-    id: string;
-    title: string;
-    imageUrl?: string;
-  };
+  imageUrl?: string;
 }
 
 interface Order {
   id: string;
+  orderNumber: string;
+  date: string;
+  status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
   total: number;
-  status: string;
-  createdAt: string;
-  orderItems: OrderItem[];
+  items: OrderItem[];
 }
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const { user, token, isAuthenticated } = useAuth();
-  const { showError } = useToast();
+  const { showError, showInfo } = useToast();
 
   useEffect(() => {
     if (isAuthenticated && token) {
@@ -49,8 +49,25 @@ export default function OrdersPage() {
         throw new Error('Failed to fetch orders');
       }
 
-      const data = await response.json();
-      setOrders(data);
+      const rawData = await response.json();
+      
+      // Transform the data to match OrderCard interface
+      const transformedOrders = rawData.map((order: any) => ({
+        id: order.id,
+        orderNumber: order.id.slice(-8),
+        date: order.createdAt,
+        status: order.status.toLowerCase(),
+        total: order.total,
+        items: order.orderItems?.map((item: any) => ({
+          id: item.id,
+          title: item.product.title,
+          quantity: item.quantity,
+          price: item.price,
+          imageUrl: item.product.imageUrl
+        })) || []
+      }));
+      
+      setOrders(transformedOrders);
     } catch (error) {
       console.error('Failed to fetch orders:', error);
       showError('Failed to load orders');
@@ -74,16 +91,16 @@ export default function OrdersPage() {
     });
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status.toLowerCase()) {
-      case 'pending': return '#f39c12';
-      case 'confirmed': return '#3498db';
-      case 'shipped': return '#9b59b6';
-      case 'delivered': return '#27ae60';
-      case 'cancelled': return '#e74c3c';
-      case 'completed': return '#27ae60';
-      default: return '#95a5a6';
-    }
+  const handleViewDetails = (orderId: string) => {
+    // Navigate to order details page or show details modal
+    console.log('Viewing details for order:', orderId);
+    showInfo('Order details functionality coming soon!');
+  };
+
+  const handleTrackOrder = (orderId: string) => {
+    // Navigate to order tracking page or show tracking info
+    console.log('Tracking order:', orderId);
+    showInfo('Order tracking functionality coming soon!');
   };
 
   if (!isAuthenticated) {
@@ -165,47 +182,22 @@ export default function OrdersPage() {
           <div className="empty-orders">
             <h3>No orders yet</h3>
             <p>When you place orders, they'll appear here.</p>
-            <a href="/" className="shop-now-btn">Start Shopping</a>
+            <Button 
+              variant="primary"
+              onClick={() => window.location.href = '/products'}
+            >
+              Start Shopping
+            </Button>
           </div>
         ) : (
           <div className="orders-list">
             {orders.map((order) => (
-              <div key={order.id} className="order-card">
-                <div className="order-header">
-                  <div className="order-info">
-                    <h3>Order #{order.id.slice(-8)}</h3>
-                    <p className="order-date">{formatDate(order.createdAt)}</p>
-                  </div>
-                  <div className="order-status">
-                    <span 
-                      className="status-badge"
-                      style={{ backgroundColor: getStatusColor(order.status) }}
-                    >
-                      {order.status}
-                    </span>
-                    <p className="order-total">{formatPrice(order.total)}</p>
-                  </div>
-                </div>
-
-                <div className="order-items">
-                  {order.orderItems.map((item) => (
-                    <div key={item.id} className="order-item">
-                      <div className="item-image">
-                        {item.product.imageUrl ? (
-                          <img src={item.product.imageUrl} alt={item.product.title} />
-                        ) : (
-                          <div className="placeholder">No Image</div>
-                        )}
-                      </div>
-                      <div className="item-details">
-                        <h4>{item.product.title}</h4>
-                        <p>Quantity: {item.quantity}</p>
-                        <p className="item-price">{formatPrice(item.price)}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <OrderCard 
+                key={order.id} 
+                order={order}
+                onViewDetails={handleViewDetails}
+                onTrackOrder={handleTrackOrder}
+              />
             ))}
           </div>
         )}
@@ -252,132 +244,10 @@ export default function OrdersPage() {
           margin-bottom: 2rem;
         }
 
-        .shop-now-btn {
-          background: #3498db;
-          color: white;
-          text-decoration: none;
-          padding: 0.75rem 1.5rem;
-          border-radius: 6px;
-          display: inline-block;
-          transition: background-color 0.2s ease;
-        }
-
-        .shop-now-btn:hover {
-          background: #2980b9;
-        }
-
         .orders-list {
           display: flex;
           flex-direction: column;
           gap: 1.5rem;
-        }
-
-        .order-card {
-          background: white;
-          border: 1px solid #eee;
-          border-radius: 8px;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          overflow: hidden;
-        }
-
-        .order-header {
-          background: #f8f9fa;
-          padding: 1.5rem;
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          border-bottom: 1px solid #eee;
-        }
-
-        .order-info h3 {
-          margin: 0 0 0.5rem 0;
-          color: #2c3e50;
-          font-size: 1.25rem;
-        }
-
-        .order-date {
-          margin: 0;
-          color: #7f8c8d;
-          font-size: 0.9rem;
-        }
-
-        .order-status {
-          text-align: right;
-        }
-
-        .status-badge {
-          color: white;
-          padding: 0.25rem 0.75rem;
-          border-radius: 20px;
-          font-size: 0.8rem;
-          font-weight: 600;
-          text-transform: uppercase;
-          display: inline-block;
-          margin-bottom: 0.5rem;
-        }
-
-        .order-total {
-          margin: 0;
-          font-size: 1.25rem;
-          font-weight: 700;
-          color: #2c3e50;
-        }
-
-        .order-items {
-          padding: 1.5rem;
-        }
-
-        .order-item {
-          display: flex;
-          gap: 1rem;
-          padding: 1rem 0;
-          border-bottom: 1px solid #f0f0f0;
-        }
-
-        .order-item:last-child {
-          border-bottom: none;
-        }
-
-        .item-image {
-          width: 60px;
-          height: 60px;
-          flex-shrink: 0;
-        }
-
-        .item-image img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-radius: 4px;
-        }
-
-        .placeholder {
-          width: 100%;
-          height: 100%;
-          background: #f8f9fa;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 0.7rem;
-          color: #6c757d;
-          border-radius: 4px;
-        }
-
-        .item-details h4 {
-          margin: 0 0 0.5rem 0;
-          color: #2c3e50;
-          font-size: 1rem;
-        }
-
-        .item-details p {
-          margin: 0.25rem 0;
-          color: #7f8c8d;
-          font-size: 0.9rem;
-        }
-
-        .item-price {
-          font-weight: 600;
-          color: #e74c3c !important;
         }
 
         @media (max-width: 768px) {
@@ -387,25 +257,6 @@ export default function OrdersPage() {
 
           .page-header h1 {
             font-size: 2rem;
-          }
-
-          .order-header {
-            flex-direction: column;
-            gap: 1rem;
-          }
-
-          .order-status {
-            text-align: left;
-          }
-
-          .order-item {
-            flex-direction: column;
-            align-items: flex-start;
-          }
-
-          .item-image {
-            width: 80px;
-            height: 80px;
           }
         }
       `}</style>
