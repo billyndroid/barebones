@@ -2,12 +2,13 @@ import { useCart } from '../contexts/CartContext';
 import { useToast } from '../contexts/ToastContext';
 import { useAuth } from '../contexts/AuthContext';
 import { useState } from 'react';
+import { SimpleCheckout } from './SimpleCheckout';
 
 export function CartSidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const { state, updateQuantity, removeItem, clearCart } = useCart();
   const { showSuccess, showError } = useToast();
   const { user, token } = useAuth();
-  const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [showCheckout, setShowCheckout] = useState(false);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -16,68 +17,19 @@ export function CartSidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () 
     }).format(price);
   };
 
-  const handleCheckout = async () => {
-    setIsCheckingOut(true);
-    try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-      
-      // Prepare checkout data
-      const checkoutData = {
-        items: state.items.map(item => ({
-          id: item.id,
-          quantity: item.quantity,
-          price: item.price
-        })),
-        customerInfo: user ? undefined : {
-          email: 'guest@example.com', // In real app, you'd collect this from user
-          name: 'Guest User'
-        }
-      };
+  const handleCheckout = () => {
+    setShowCheckout(true);
+  };
 
-      // Create checkout
-      const headers: any = {
-        'Content-Type': 'application/json'
-      };
+  const handleCheckoutSuccess = () => {
+    showSuccess('Order completed successfully!');
+    clearCart();
+    setShowCheckout(false);
+    onClose();
+  };
 
-      if (token) {
-        headers.Authorization = `Bearer ${token}`;
-      }
-
-      const response = await fetch(`${API_URL}/api/checkout/create`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(checkoutData)
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Checkout failed');
-      }
-
-      const result = await response.json();
-      
-      // Complete the order (simulate payment completion)
-      const completeResponse = await fetch(`${API_URL}/api/checkout/complete/${result.orderId}`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({ paymentMethod: 'demo' })
-      });
-
-      if (!completeResponse.ok) {
-        throw new Error('Failed to complete order');
-      }
-
-      const completedOrder = await completeResponse.json();
-      
-      showSuccess(`Order completed! Order ID: ${completedOrder.orderId}`);
-      clearCart();
-      onClose();
-    } catch (error) {
-      console.error('Checkout failed:', error);
-      showError(error instanceof Error ? error.message : 'Checkout failed. Please try again.');
-    } finally {
-      setIsCheckingOut(false);
-    }
+  const handleCheckoutCancel = () => {
+    setShowCheckout(false);
   };
 
   return (
@@ -150,16 +102,14 @@ export function CartSidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                   <button 
                     className="clear-cart" 
                     onClick={clearCart}
-                    disabled={isCheckingOut}
                   >
                     Clear Cart
                   </button>
                   <button 
                     className="checkout-btn" 
                     onClick={handleCheckout}
-                    disabled={isCheckingOut}
                   >
-                    {isCheckingOut ? 'Processing...' : 'Checkout'}
+                    Checkout
                   </button>
                 </div>
               </div>
@@ -447,6 +397,18 @@ export function CartSidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () 
           }
         `}</style>
       </div>
+
+      {showCheckout && (
+        <SimpleCheckout
+          items={state.items.map(item => ({
+            id: item.id,
+            quantity: item.quantity,
+            price: item.price
+          }))}
+          onSuccess={handleCheckoutSuccess}
+          onCancel={handleCheckoutCancel}
+        />
+      )}
     </>
   );
 }

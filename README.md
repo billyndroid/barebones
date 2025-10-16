@@ -133,8 +133,12 @@ barebones/
 - `POST /api/orders` - Create new order
 - `GET /api/orders/:id` - Get specific order
 
-### Checkout
-- `POST /api/checkout` - Process payment and create order
+### Checkout & Payments
+- `POST /api/checkout/create-payment-intent` - Create Stripe PaymentIntent
+- `POST /api/checkout/confirm-payment/:orderId` - Confirm payment completion
+- `POST /api/checkout/complete/:orderId` - Complete order (legacy/demo)
+- `POST /api/checkout/webhook/stripe` - Handle Stripe webhooks
+- `GET /api/checkout/order-status/:orderId` - Get order payment status
 
 ## 🎯 Features
 
@@ -150,8 +154,13 @@ barebones/
 - ✅ CORS configuration
 - ✅ Health monitoring
 
+### Recently Added
+- ✅ Payment integration foundation (Stripe-ready architecture)
+- ✅ Enhanced checkout flow with payment tracking
+- ✅ Order payment status management
+
 ### Planned
-- 🔄 Payment integration (Stripe/PayPal)
+- 🔄 Full Stripe Elements integration (see STRIPE_SETUP.md)
 - 🔄 Admin dashboard
 - 🔄 Product reviews and ratings
 - 🔄 Email notifications

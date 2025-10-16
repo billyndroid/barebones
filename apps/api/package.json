@@ -19,7 +19,8 @@
     "bcrypt": "^6.0.0",
     "crypto": "^1.0.1",
     "fastify": "^4.24.3",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "stripe": "^19.1.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",

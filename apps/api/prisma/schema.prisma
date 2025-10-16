@@ -37,15 +37,18 @@ model Product {
 }
 
 model Order {
-  id         String   @id @default(cuid())
-  shopifyId  String?  @unique
-  userId     String
-  status     String   @default("PENDING")
-  total      Decimal
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  user       User     @relation(fields: [userId], references: [id])
-  orderItems OrderItem[]
+  id                String   @id @default(cuid())
+  shopifyId         String?  @unique
+  userId            String
+  status            String   @default("PENDING")
+  total             Decimal
+  paymentIntentId   String?  @unique
+  paymentStatus     String   @default("PENDING") // PENDING, COMPLETED, FAILED, REFUNDED
+  stripeCustomerId  String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id])
+  orderItems        OrderItem[]
 
   @@map("orders")
 }
