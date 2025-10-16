@@ -112,19 +112,20 @@ async function seedProducts() {
   console.log('🌱 Seeding dummy products...');
 
   try {
-    // Clear existing products
-    await prisma.product.deleteMany({
-      where: {
-        shopifyId: {
-          startsWith: 'dummy-'
-        }
-      }
-    });
+    // Check if we already have products
+    const existingProducts = await prisma.product.count();
+    
+    if (existingProducts > 0) {
+      console.log(`✅ Database already has ${existingProducts} products. Skipping seed.`);
+      return;
+    }
 
-    // Create dummy products
+    // Create dummy products only if none exist
     for (const product of dummyProducts) {
-      await prisma.product.create({
-        data: product
+      await prisma.product.upsert({
+        where: { shopifyId: product.shopifyId },
+        update: {},
+        create: product
       });
     }
 
