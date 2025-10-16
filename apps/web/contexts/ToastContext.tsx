@@ -123,11 +123,37 @@ function ToastItem({ toast, onRemove }: { toast: Toast; onRemove: (id: string) =
 
   const getIcon = (type: Toast['type']) => {
     switch (type) {
-      case 'success': return '✅';
-      case 'error': return '❌';
-      case 'warning': return '⚠️';
+      case 'success': 
+        return (
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6L9 17L4 12" stroke="#22c55e" strokeWidth="2" fill="none"/>
+          </svg>
+        );
+      case 'error': 
+        return (
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="#ef4444" strokeWidth="2" fill="none"/>
+            <path d="M15 9L9 15" stroke="#ef4444" strokeWidth="2"/>
+            <path d="M9 9L15 15" stroke="#ef4444" strokeWidth="2"/>
+          </svg>
+        );
+      case 'warning': 
+        return (
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L22 20H2L12 2Z" stroke="#f59e0b" strokeWidth="2" fill="none"/>
+            <path d="M12 9V13" stroke="#f59e0b" strokeWidth="2"/>
+            <circle cx="12" cy="17" r="1" fill="#f59e0b"/>
+          </svg>
+        );
       case 'info':
-      default: return 'ℹ️';
+      default: 
+        return (
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="#3b82f6" strokeWidth="2" fill="none"/>
+            <path d="M12 16V12" stroke="#3b82f6" strokeWidth="2"/>
+            <circle cx="12" cy="8" r="1" fill="#3b82f6"/>
+          </svg>
+        );
     }
   };
 

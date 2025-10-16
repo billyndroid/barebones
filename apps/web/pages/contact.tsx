@@ -46,25 +46,46 @@ export default function Contact() {
             <h2>Get in Touch</h2>
             <div className="info-cards">
               <div className="info-card">
-                <div className="info-icon">📧</div>
+                <div className="info-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/>
+                    <path d="M2 6L12 13L22 6" stroke="currentColor" strokeWidth="2"/>
+                  </svg>
+                </div>
                 <h3>Email</h3>
                 <p>support@barebones.com</p>
                 <p>sales@barebones.com</p>
               </div>
               <div className="info-card">
-                <div className="info-icon">📞</div>
+                <div className="info-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 16.92V19.92C22 20.52 21.52 21 20.92 21C10.39 21 2 12.61 2 2.08C2 1.48 2.48 1 3.08 1H6.08C6.68 1 7.16 1.48 7.16 2.08V5.08C7.16 5.68 6.68 6.16 6.08 6.16H4.23C5.56 9.63 8.37 12.44 11.84 13.77V11.92C11.84 11.32 12.32 10.84 12.92 10.84H15.92C16.52 10.84 17 11.32 17 11.92V14.92C17 15.52 16.52 16 15.92 16H12.92C12.32 16 11.84 16.48 11.84 17.08V19.92C11.84 20.52 12.32 21 12.92 21H20.92C21.52 21 22 20.52 22 19.92V16.92Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  </svg>
+                </div>
                 <h3>Phone</h3>
                 <p>+1 (555) 123-4567</p>
                 <p>Mon-Fri: 9AM-6PM EST</p>
               </div>
               <div className="info-card">
-                <div className="info-icon">📍</div>
+                <div className="info-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 10C21 17L12 23L3 17C3 13.134 7.134 10 12 10S21 13.134 21 17Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+                    <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  </svg>
+                </div>
                 <h3>Address</h3>
                 <p>123 Commerce Street</p>
                 <p>Business District, NY 10001</p>
               </div>
               <div className="info-card">
-                <div className="info-icon">💬</div>
+                <div className="info-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+                    <circle cx="8" cy="9" r="1" fill="currentColor"/>
+                    <circle cx="12" cy="9" r="1" fill="currentColor"/>
+                    <circle cx="16" cy="9" r="1" fill="currentColor"/>
+                  </svg>
+                </div>
                 <h3>Live Chat</h3>
                 <p>Available 24/7</p>
                 <p>Click the chat icon</p>
@@ -163,7 +184,7 @@ export default function Contact() {
         .hero-section {
           text-align: center;
           padding: 4rem 2rem;
-          background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+          background: linear-gradient(135deg, #F0386B 0%, #FE654F 100%);
           border-radius: 16px;
           color: white;
           margin-bottom: 4rem;
@@ -191,7 +212,7 @@ export default function Contact() {
         .contact-info h2,
         .contact-form h2 {
           font-size: 2rem;
-          color: #2c3e50;
+          color: #3F334D;
           margin-bottom: 2rem;
         }
 
@@ -217,7 +238,7 @@ export default function Contact() {
         }
 
         .info-card h3 {
-          color: #2c3e50;
+          color: #3F334D;
           margin-bottom: 0.5rem;
           font-size: 1.1rem;
         }
@@ -229,7 +250,7 @@ export default function Contact() {
         }
 
         .faq-section h3 {
-          color: #2c3e50;
+          color: #3F334D;
           margin-bottom: 1.5rem;
           font-size: 1.5rem;
         }
@@ -251,7 +272,7 @@ export default function Contact() {
           padding: 1.5rem;
           cursor: pointer;
           font-weight: 600;
-          color: #2c3e50;
+          color: #3F334D;
           background: #f8f9fa;
           border-bottom: 1px solid #e9ecef;
         }
@@ -296,7 +317,7 @@ export default function Contact() {
 
         .form-input:focus {
           outline: none;
-          border-color: #667eea;
+          border-color: #F0386B;
           box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
@@ -319,12 +340,12 @@ export default function Contact() {
         }
 
         .success-message {
-          background: #d4edda;
-          color: #155724;
+          background: rgba(240, 56, 107, 0.1);
+          color: #F0386B;
           padding: 1rem;
           border-radius: 8px;
           margin-bottom: 1.5rem;
-          border: 1px solid #c3e6cb;
+          border: 1px solid rgba(240, 56, 107, 0.3);
         }
 
         @media (max-width: 768px) {

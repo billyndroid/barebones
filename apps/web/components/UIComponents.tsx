@@ -8,7 +8,7 @@ interface LoadingSpinnerProps {
 
 export function LoadingSpinner({ 
   size = 'medium', 
-  color = '#3498db',
+  color = '#F0386B',
   text 
 }: LoadingSpinnerProps) {
   const sizeMap = {
@@ -19,7 +19,11 @@ export function LoadingSpinner({
 
   return (
     <div className="loading-container">
-      <div className="spinner"></div>
+      <div className="spinner-modern">
+        <div className="spinner-ring"></div>
+        <div className="spinner-ring"></div>
+        <div className="spinner-ring"></div>
+      </div>
       {text && <p className="loading-text">{text}</p>}
       
       <style jsx>{`
@@ -28,28 +32,77 @@ export function LoadingSpinner({
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 1rem;
+          gap: 1.5rem;
+          padding: 2rem;
         }
 
-        .spinner {
+        .spinner-modern {
+          position: relative;
           width: ${sizeMap[size]};
           height: ${sizeMap[size]};
-          border: 3px solid #f3f3f3;
-          border-top: 3px solid ${color};
+        }
+
+        .spinner-ring {
+          position: absolute;
+          border: 2px solid transparent;
           border-radius: 50%;
-          animation: spin 1s linear infinite;
+          animation: modernSpin 1.5s linear infinite;
+        }
+
+        .spinner-ring:nth-child(1) {
+          width: 100%;
+          height: 100%;
+          border-top: 2px solid ${color};
+          animation-delay: 0s;
+        }
+
+        .spinner-ring:nth-child(2) {
+          width: 80%;
+          height: 80%;
+          top: 10%;
+          left: 10%;
+          border-right: 2px solid rgba(254, 101, 79, 0.6);
+          animation-delay: -0.4s;
+          animation-direction: reverse;
+        }
+
+        .spinner-ring:nth-child(3) {
+          width: 60%;
+          height: 60%;
+          top: 20%;
+          left: 20%;
+          border-bottom: 2px solid rgba(248, 192, 200, 0.8);
+          animation-delay: -0.8s;
         }
 
         .loading-text {
-          color: #7f8c8d;
-          font-size: 0.9rem;
+          color: #3F334D;
+          font-size: 0.95rem;
           margin: 0;
           text-align: center;
+          font-weight: 500;
+          font-family: 'Inter', sans-serif;
+          animation: textPulse 2s ease-in-out infinite;
         }
 
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
+        @keyframes modernSpin {
+          0% { 
+            transform: rotate(0deg);
+            filter: hue-rotate(0deg);
+          }
+          100% { 
+            transform: rotate(360deg);
+            filter: hue-rotate(360deg);
+          }
+        }
+
+        @keyframes textPulse {
+          0%, 100% {
+            opacity: 0.7;
+          }
+          50% {
+            opacity: 1;
+          }
         }
       `}</style>
     </div>
@@ -81,57 +134,62 @@ export function Button({
 }: ButtonProps) {
   const variantStyles = {
     primary: {
-      background: '#3498db',
+      background: 'linear-gradient(135deg, #F0386B 0%, #FE654F 100%)',
       color: 'white',
-      border: '2px solid #3498db',
-      hoverBg: '#2980b9',
-      hoverBorder: '#2980b9'
+      border: 'none',
+      hoverBg: 'linear-gradient(135deg, #e02d5f 0%, #fe4a3b 100%)',
+      shadow: '0 4px 14px rgba(240, 56, 107, 0.4)',
+      hoverShadow: '0 8px 25px rgba(240, 56, 107, 0.6)'
     },
     secondary: {
-      background: '#95a5a6',
+      background: 'linear-gradient(135deg, #FE654F 0%, #F8C0C8 100%)',
       color: 'white',
-      border: '2px solid #95a5a6',
-      hoverBg: '#7f8c8d',
-      hoverBorder: '#7f8c8d'
+      border: 'none',
+      hoverBg: 'linear-gradient(135deg, #fe4a3b 0%, #f5adb9 100%)',
+      shadow: '0 4px 14px rgba(254, 101, 79, 0.4)',
+      hoverShadow: '0 8px 25px rgba(254, 101, 79, 0.6)'
     },
     success: {
-      background: '#27ae60',
+      background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
       color: 'white',
-      border: '2px solid #27ae60',
-      hoverBg: '#229954',
-      hoverBorder: '#229954'
+      border: 'none',
+      hoverBg: 'linear-gradient(135deg, #047857 0%, #065f46 100%)',
+      shadow: '0 4px 14px rgba(16, 185, 129, 0.3)',
+      hoverShadow: '0 8px 25px rgba(16, 185, 129, 0.4)'
     },
     danger: {
-      background: '#e74c3c',
+      background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
       color: 'white',
-      border: '2px solid #e74c3c',
-      hoverBg: '#c0392b',
-      hoverBorder: '#c0392b'
+      border: 'none',
+      hoverBg: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)',
+      shadow: '0 4px 14px rgba(239, 68, 68, 0.3)',
+      hoverShadow: '0 8px 25px rgba(239, 68, 68, 0.4)'
     },
     outline: {
-      background: 'transparent',
-      color: '#3498db',
-      border: '2px solid #3498db',
-      hoverBg: '#3498db',
-      hoverBorder: '#3498db'
+      background: 'rgba(255, 255, 255, 0.1)',
+      color: '#F0386B',
+      border: '2px solid #F0386B',
+      hoverBg: '#F0386B',
+      shadow: 'none',
+      hoverShadow: '0 8px 25px rgba(240, 56, 107, 0.4)'
     }
   };
 
   const sizeStyles = {
     small: {
       padding: '0.5rem 1rem',
-      fontSize: '0.85rem',
-      borderRadius: '4px'
+      fontSize: '0.875rem',
+      borderRadius: '8px'
     },
     medium: {
       padding: '0.75rem 1.5rem',
-      fontSize: '0.9rem',
-      borderRadius: '6px'
+      fontSize: '1rem',
+      borderRadius: '12px'
     },
     large: {
       padding: '1rem 2rem',
-      fontSize: '1rem',
-      borderRadius: '8px'
+      fontSize: '1.125rem',
+      borderRadius: '16px'
     }
   };
 
@@ -149,9 +207,11 @@ export function Button({
       <span className={loading ? 'button-content loading' : 'button-content'}>
         {children}
       </span>
+      <div className="button-shine"></div>
 
       <style jsx>{`
         .custom-button {
+          position: relative;
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -164,25 +224,47 @@ export function Button({
           font-size: ${currentSize.fontSize};
           font-weight: 500;
           cursor: pointer;
-          transition: all 0.2s ease;
+          transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           outline: none;
-          font-family: inherit;
+          font-family: 'Inter', sans-serif;
           text-decoration: none;
           user-select: none;
           width: ${fullWidth ? '100%' : 'auto'};
+          overflow: hidden;
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          box-shadow: ${currentVariant.shadow};
+        }
+
+        .button-shine {
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+          );
+          transition: left 0.5s ease;
+          z-index: 1;
+        }
+
+        .custom-button:hover .button-shine {
+          left: 100%;
         }
 
         .custom-button:hover:not(:disabled) {
-          background: ${variant === 'outline' ? currentVariant.hoverBg : currentVariant.hoverBg};
-          border-color: ${currentVariant.hoverBorder};
+          background: ${currentVariant.hoverBg};
           color: ${variant === 'outline' ? 'white' : currentVariant.color};
-          transform: translateY(-1px);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          transform: translateY(-2px);
+          box-shadow: ${currentVariant.hoverShadow};
         }
 
         .custom-button:active:not(:disabled) {
           transform: translateY(0);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .custom-button:disabled {
@@ -193,7 +275,9 @@ export function Button({
         }
 
         .button-content {
-          transition: opacity 0.2s ease;
+          position: relative;
+          z-index: 2;
+          transition: all 0.2s ease;
         }
 
         .button-content.loading {
@@ -201,7 +285,7 @@ export function Button({
         }
 
         .custom-button:focus {
-          box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+          box-shadow: ${currentVariant.hoverShadow}, 0 0 0 3px rgba(240, 56, 107, 0.2);
         }
       `}</style>
     </button>
@@ -260,57 +344,86 @@ export function Input({
         .input-container {
           display: flex;
           flex-direction: column;
-          gap: 0.5rem;
+          gap: 0.75rem;
           width: ${fullWidth ? '100%' : 'auto'};
         }
 
         .input-label {
-          font-size: 0.9rem;
-          font-weight: 500;
-          color: #2c3e50;
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: #3F334D;
+          font-family: 'Inter', sans-serif;
         }
 
         .required {
-          color: #e74c3c;
+          color: #ef4444;
           margin-left: 0.25rem;
         }
 
         .input-field {
-          padding: 0.75rem 1rem;
-          border: 2px solid #e1e8ed;
-          border-radius: 6px;
-          font-size: 0.95rem;
+          padding: 1rem 1.25rem;
+          border: 2px solid rgba(226, 232, 240, 0.8);
+          border-radius: 12px;
+          font-size: 1rem;
           outline: none;
-          transition: all 0.2s ease;
-          background: white;
-          font-family: inherit;
+          transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          background: rgba(255, 255, 255, 0.8);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          font-family: 'Inter', sans-serif;
+          color: #3F334D;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .input-field::placeholder {
+          color: #94a3b8;
+          font-weight: 400;
         }
 
         .input-field:focus,
         .input-field.focused {
-          border-color: #3498db;
-          box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+          border-color: #F0386B;
+          background: rgba(255, 255, 255, 0.95);
+          box-shadow: 0 0 0 3px rgba(240, 56, 107, 0.2), 0 4px 12px rgba(240, 56, 107, 0.1);
+          transform: translateY(-1px);
         }
 
         .input-field.error {
-          border-color: #e74c3c;
+          border-color: #ef4444;
+          background: rgba(254, 242, 242, 0.8);
         }
 
         .input-field.error:focus {
-          border-color: #e74c3c;
-          box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+          border-color: #ef4444;
+          box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1), 0 4px 12px rgba(239, 68, 68, 0.1);
         }
 
         .input-field:disabled {
-          background: #f8f9fa;
-          color: #6c757d;
+          background: rgba(248, 250, 252, 0.8);
+          color: #94a3b8;
           cursor: not-allowed;
+          border-color: rgba(203, 213, 225, 0.8);
         }
 
         .error-message {
-          font-size: 0.85rem;
-          color: #e74c3c;
+          font-size: 0.875rem;
+          color: #ef4444;
           margin-top: 0.25rem;
+          font-weight: 500;
+          font-family: 'Inter', sans-serif;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .error-message::before {
+          content: '';
+          background-image: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L22 20H2L12 2Z" stroke="%23ef4444" stroke-width="2" fill="none"/><path d="M12 9V13" stroke="%23ef4444" stroke-width="2"/><circle cx="12" cy="17" r="1" fill="%23ef4444"/></svg>');
+          width: 16px;
+          height: 16px;
+          background-size: contain;
+          background-repeat: no-repeat;
+          display: inline-block;
         }
       `}</style>
     </div>

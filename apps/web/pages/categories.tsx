@@ -26,28 +26,42 @@ const mockCategories: Category[] = [
     id: 'electronics',
     name: 'Electronics',
     description: 'Tech gadgets and electronic devices',
-    icon: '📱',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="5" y="2" width="14" height="20" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/>
+      <circle cx="12" cy="18" r="1" fill="currentColor"/>
+    </svg>`,
     productCount: 8
   },
   {
     id: 'accessories',
     name: 'Accessories',
     description: 'Complementary items and add-ons',
-    icon: '🎒',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 7V5C8 3.9 8.9 3 10 3H14C15.1 3 16 3.9 16 5V7" stroke="currentColor" strokeWidth="2" fill="none"/>
+      <path d="M5 9H19L18 20H6L5 9Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+      <path d="M10 12V14" stroke="currentColor" strokeWidth="2"/>
+      <path d="M14 12V14" stroke="currentColor" strokeWidth="2"/>
+    </svg>`,
     productCount: 5
   },
   {
     id: 'home-office',
     name: 'Home & Office',
     description: 'Furniture and office essentials',
-    icon: '🏠',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+      <path d="M9 22V12H15V22" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>`,
     productCount: 7
   },
   {
     id: 'health-fitness',
     name: 'Health & Fitness',
     description: 'Wellness and fitness products',
-    icon: '💪',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6.5 6.5C6.5 5.11929 7.61929 4 9 4C10.3807 4 11.5 5.11929 11.5 6.5V8.5H12.5V6.5C12.5 5.11929 13.6193 4 15 4C16.3807 4 17.5 5.11929 17.5 6.5V17.5C17.5 18.8807 16.3807 20 15 20C13.6193 20 12.5 18.8807 12.5 17.5V15.5H11.5V17.5C11.5 18.8807 10.3807 20 9 20C7.61929 20 6.5 18.8807 6.5 17.5V6.5Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+      <rect x="8" y="8" width="8" height="8" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>`,
     productCount: 3
   }
 ];

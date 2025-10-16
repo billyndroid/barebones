@@ -28,7 +28,13 @@ export default function About() {
             </div>
             <div className="story-image">
               <div className="placeholder-image">
-                <span>🏢</span>
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L2 7V10H4V20H20V10H22V7L12 2Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <path d="M6 10V16H8V10H6Z" fill="currentColor"/>
+                  <path d="M10 10V16H12V10H10Z" fill="currentColor"/>
+                  <path d="M14 10V16H16V10H14Z" fill="currentColor"/>
+                  <path d="M18 10V16H20V10H18Z" fill="currentColor"/>
+                </svg>
                 <p>Our headquarters</p>
               </div>
             </div>
@@ -39,22 +45,44 @@ export default function About() {
           <h2>Our Values</h2>
           <div className="values-grid">
             <div className="value-card">
-              <div className="value-icon">💎</div>
+              <div className="value-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L2 8L12 22L22 8L12 2Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <path d="M2 8L12 14L22 8" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M12 14V22" stroke="currentColor" strokeWidth="2"/>
+                </svg>
+              </div>
               <h3>Quality First</h3>
               <p>We carefully curate every product to ensure it meets our high standards.</p>
             </div>
             <div className="value-card">
-              <div className="value-icon">🤝</div>
+              <div className="value-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21 12L16 7L13 10L11 8L8 11L3 6" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <path d="M16 7H21V12" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" fill="none"/>
+                </svg>
+              </div>
               <h3>Customer Focus</h3>
               <p>Your satisfaction is our priority. We're here to help every step of the way.</p>
             </div>
             <div className="value-card">
-              <div className="value-icon">🌱</div>
+              <div className="value-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 22C12 18 16 14 20 10C16 14 12 18 12 22Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <path d="M12 22C12 18 8 14 4 10C8 14 12 18 12 22Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <path d="M12 22V2" stroke="currentColor" strokeWidth="2"/>
+                </svg>
+              </div>
               <h3>Sustainability</h3>
               <p>We're committed to responsible business practices and environmental stewardship.</p>
             </div>
             <div className="value-card">
-              <div className="value-icon">⚡</div>
+              <div className="value-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" strokeWidth="2" fill="currentColor"/>
+                </svg>
+              </div>
               <h3>Innovation</h3>
               <p>We continuously improve our platform to provide the best shopping experience.</p>
             </div>
@@ -65,19 +93,38 @@ export default function About() {
           <h2>Meet Our Team</h2>
           <div className="team-grid">
             <div className="team-member">
-              <div className="member-avatar">👨‍💼</div>
+              <div className="member-avatar">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <path d="M20 20C20 16 16 14 12 14S4 16 4 20" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <rect x="8" y="6" width="8" height="2" fill="currentColor"/>
+                </svg>
+              </div>
               <h3>John Smith</h3>
               <p>CEO & Founder</p>
               <p>Passionate about creating exceptional customer experiences.</p>
             </div>
             <div className="team-member">
-              <div className="member-avatar">👩‍💻</div>
+              <div className="member-avatar">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <path d="M20 20C20 16 16 14 12 14S4 16 4 20" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <rect x="6" y="5" width="12" height="6" rx="6" fill="none" stroke="currentColor" strokeWidth="1"/>
+                </svg>
+              </div>
               <h3>Sarah Johnson</h3>
               <p>CTO</p>
               <p>Leading our technology initiatives and platform development.</p>
             </div>
             <div className="team-member">
-              <div className="member-avatar">👨‍🎨</div>
+              <div className="member-avatar">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <path d="M20 20C20 16 16 14 12 14S4 16 4 20" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <circle cx="10" cy="7" r="1" fill="currentColor"/>
+                  <circle cx="14" cy="7" r="1" fill="currentColor"/>
+                </svg>
+              </div>
               <h3>Mike Chen</h3>
               <p>Head of Design</p>
               <p>Crafting beautiful and intuitive user experiences.</p>
@@ -118,7 +165,7 @@ export default function About() {
         .hero-section {
           text-align: center;
           padding: 4rem 2rem;
-          background: linear-gradient(135deg, #2c3e50 0%, #4a6741 100%);
+          background: linear-gradient(135deg, #F0386B 0%, #FE654F 100%);
           border-radius: 16px;
           color: white;
           margin-bottom: 4rem;
@@ -148,7 +195,7 @@ export default function About() {
 
         .story-text h2 {
           font-size: 2.5rem;
-          color: #2c3e50;
+          color: #3F334D;
           margin-bottom: 2rem;
         }
 
@@ -185,7 +232,7 @@ export default function About() {
         .values-section h2 {
           text-align: center;
           font-size: 2.5rem;
-          color: #2c3e50;
+          color: #3F334D;
           margin-bottom: 3rem;
         }
 
@@ -216,7 +263,7 @@ export default function About() {
         }
 
         .value-card h3 {
-          color: #2c3e50;
+          color: #3F334D;
           margin-bottom: 1rem;
           font-size: 1.25rem;
         }
@@ -233,7 +280,7 @@ export default function About() {
         .team-section h2 {
           text-align: center;
           font-size: 2.5rem;
-          color: #2c3e50;
+          color: #3F334D;
           margin-bottom: 3rem;
         }
 
@@ -258,12 +305,12 @@ export default function About() {
         }
 
         .team-member h3 {
-          color: #2c3e50;
+          color: #3F334D;
           margin-bottom: 0.5rem;
         }
 
         .team-member > p:first-of-type {
-          color: #667eea;
+          color: #F0386B;
           font-weight: 600;
           margin-bottom: 1rem;
         }
@@ -282,7 +329,7 @@ export default function About() {
 
         .cta-section h2 {
           font-size: 2.5rem;
-          color: #2c3e50;
+          color: #3F334D;
           margin-bottom: 1rem;
         }
 
