@@ -81,7 +81,7 @@ export function LoadingSpinner({
           margin: 0;
           text-align: center;
           font-weight: 500;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Roboto', sans-serif;
           animation: textPulse 2s ease-in-out infinite;
         }
 
@@ -226,7 +226,7 @@ export function Button({
           cursor: pointer;
           transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           outline: none;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Roboto', sans-serif;
           text-decoration: none;
           user-select: none;
           width: ${fullWidth ? '100%' : 'auto'};
@@ -352,7 +352,7 @@ export function Input({
           font-size: 0.95rem;
           font-weight: 600;
           color: #3F334D;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Montserrat', sans-serif;
         }
 
         .required {
@@ -370,7 +370,7 @@ export function Input({
           background: rgba(255, 255, 255, 0.8);
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
-          font-family: 'Inter', sans-serif;
+          font-family: 'Roboto', sans-serif;
           color: #3F334D;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
@@ -410,7 +410,7 @@ export function Input({
           color: #ef4444;
           margin-top: 0.25rem;
           font-weight: 500;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Roboto', sans-serif;
           display: flex;
           align-items: center;
           gap: 0.5rem;
@@ -427,5 +427,90 @@ export function Input({
         }
       `}</style>
     </div>
+  );
+}
+
+interface PromoBadgeProps {
+  text: string;
+  variant?: 'sale' | 'new' | 'hot' | 'limited';
+  size?: 'small' | 'medium' | 'large';
+  className?: string;
+}
+
+export function PromoBadge({
+  text,
+  variant = 'sale',
+  size = 'medium',
+  className = ''
+}: PromoBadgeProps) {
+  const variantStyles = {
+    sale: {
+      background: 'linear-gradient(135deg, #F0386B 0%, #FE654F 100%)',
+      color: 'white'
+    },
+    new: {
+      background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
+      color: 'white'
+    },
+    hot: {
+      background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+      color: 'white'
+    },
+    limited: {
+      background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+      color: 'white'
+    }
+  };
+
+  const sizeStyles = {
+    small: { fontSize: '0.7rem', padding: '2px 8px' },
+    medium: { fontSize: '0.8rem', padding: '4px 12px' },
+    large: { fontSize: '0.9rem', padding: '6px 16px' }
+  };
+
+  return (
+    <span className={`promo-badge ${className}`}>
+      {text.toUpperCase()}
+      
+      <style jsx>{`
+        .promo-badge {
+          display: inline-block;
+          font-family: 'Bebas Neue', cursive;
+          font-weight: 400;
+          letter-spacing: 1px;
+          background: ${variantStyles[variant].background};
+          color: ${variantStyles[variant].color};
+          border-radius: 15px;
+          font-size: ${sizeStyles[size].fontSize};
+          padding: ${sizeStyles[size].padding};
+          text-align: center;
+          box-shadow: 0 2px 8px rgba(240, 56, 107, 0.3);
+          animation: badgeGlow 2s ease-in-out infinite alternate;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .promo-badge::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+          animation: shimmer 2s infinite;
+        }
+
+        @keyframes badgeGlow {
+          0% { transform: scale(1); box-shadow: 0 2px 8px rgba(240, 56, 107, 0.3); }
+          100% { transform: scale(1.02); box-shadow: 0 4px 12px rgba(240, 56, 107, 0.5); }
+        }
+
+        @keyframes shimmer {
+          0% { left: -100%; }
+          100% { left: 100%; }
+        }
+      `}</style>
+    </span>
   );
 }

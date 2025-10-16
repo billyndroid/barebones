@@ -98,7 +98,7 @@ export function Header() {
 
         .logo h1 {
           margin: 0;
-          font-family: 'Poppins', sans-serif;
+          font-family: 'Montserrat', sans-serif;
           font-size: 1.8rem;
           font-weight: 700;
           background: linear-gradient(135deg, #F0386B 0%, #FE654F 100%);
@@ -123,7 +123,7 @@ export function Header() {
           text-decoration: none;
           color: #3F334D;
           font-weight: 500;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Roboto', sans-serif;
           position: relative;
           transition: all 0.3s ease;
           padding: 0.5rem 0;
@@ -162,7 +162,7 @@ export function Header() {
           border-radius: 12px;
           cursor: pointer;
           font-weight: 500;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Roboto', sans-serif;
           transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           box-shadow: 0 4px 14px rgba(240, 56, 107, 0.4);
           position: relative;
@@ -203,7 +203,7 @@ export function Header() {
           transition: all 0.3s ease;
           color: #F0386B;
           font-weight: 500;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Roboto', sans-serif;
           display: flex;
           align-items: center;
           gap: 0.5rem;
@@ -316,8 +316,10 @@ export function Header() {
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 0.75rem;
-          font-weight: 600;
+          font-family: 'Bebas Neue', cursive;
+          font-size: 0.8rem;
+          font-weight: 400;
+          letter-spacing: 0.5px;
           border: 2px solid white;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
           animation: pulse 2s infinite;

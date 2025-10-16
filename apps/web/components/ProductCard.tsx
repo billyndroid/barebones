@@ -53,6 +53,10 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="product-card">
       <div className="image-container">
+        {/* Add best seller badge for demonstration */}
+        {product.price > 50 && (
+          <div className="best-seller-badge">BEST SELLER</div>
+        )}
         {product.imageUrl ? (
           <img 
             src={product.imageUrl} 
@@ -151,6 +155,29 @@ export function ProductCard({ product }: ProductCardProps) {
           background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         }
 
+        .best-seller-badge {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          background: linear-gradient(135deg, #F0386B 0%, #FE654F 100%);
+          color: white;
+          font-family: 'Bebas Neue', cursive;
+          font-size: 0.8rem;
+          font-weight: 400;
+          letter-spacing: 1px;
+          padding: 4px 12px;
+          border-radius: 15px;
+          z-index: 2;
+          transform: rotate(15deg);
+          box-shadow: 0 2px 8px rgba(240, 56, 107, 0.3);
+          animation: badgePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+          0%, 100% { transform: rotate(15deg) scale(1); }
+          50% { transform: rotate(15deg) scale(1.05); }
+        }
+
         .image-container::after {
           content: '';
           position: absolute;
@@ -188,7 +215,7 @@ export function ProductCard({ product }: ProductCardProps) {
           color: #64748b;
           font-size: 1rem;
           font-weight: 500;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Roboto', sans-serif;
         }
 
         .product-info {
@@ -199,7 +226,7 @@ export function ProductCard({ product }: ProductCardProps) {
         }
 
         .product-title {
-          font-family: 'Poppins', sans-serif;
+          font-family: 'Montserrat', sans-serif;
           font-size: 1.3rem;
           font-weight: 600;
           color: #3F334D;
@@ -231,9 +258,10 @@ export function ProductCard({ product }: ProductCardProps) {
         }
 
         .product-price {
-          font-family: 'Poppins', sans-serif;
-          font-size: 1.4rem;
-          font-weight: 700;
+          font-family: 'Bebas Neue', cursive;
+          font-size: 1.6rem;
+          font-weight: 400;
+          letter-spacing: 1px;
           background: linear-gradient(135deg, #F0386B 0%, #FE654F 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -249,7 +277,7 @@ export function ProductCard({ product }: ProductCardProps) {
           cursor: pointer;
           font-size: 0.9rem;
           font-weight: 500;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Roboto', sans-serif;
           transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           min-width: 120px;
           position: relative;
@@ -310,7 +338,7 @@ export function ProductCard({ product }: ProductCardProps) {
           font-size: 0.9rem;
           color: #F0386B;
           font-weight: 600;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Roboto', sans-serif;
           text-align: center;
           padding: 0.25rem 0.75rem;
           background: rgba(240, 56, 107, 0.1);
@@ -326,7 +354,7 @@ export function ProductCard({ product }: ProductCardProps) {
           cursor: pointer;
           font-size: 0.85rem;
           font-weight: 500;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Roboto', sans-serif;
           transition: all 0.3s ease;
           box-shadow: 0 4px 14px rgba(254, 101, 79, 0.3);
         }

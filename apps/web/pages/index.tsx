@@ -46,7 +46,7 @@ export default function Home() {
     <>
       <Head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&family=Bebas+Neue&display=swap"
           rel="stylesheet"
         />
       </Head>
@@ -54,6 +54,7 @@ export default function Home() {
       <div className="container">
         <header className="hero-section">
           <div className="hero-content">
+            <div className="promo-banner">FREE SHIPPING ON ORDERS OVER $50</div>
             <h1>Welcome to Barebones Store</h1>
             <p>Discover our amazing collection of high-quality products</p>
             <div className="hero-actions">
@@ -167,7 +168,7 @@ export default function Home() {
         }
 
         :global(body) {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
           background: linear-gradient(135deg, #F0386B 0%, #FE654F 50%, #F8C0C8 100%);
           min-height: 100vh;
           margin: 0;
@@ -230,8 +231,30 @@ export default function Home() {
           z-index: 1;
         }
 
+        .promo-banner {
+          font-family: 'Bebas Neue', cursive;
+          font-size: 1.1rem;
+          font-weight: 400;
+          letter-spacing: 2px;
+          color: var(--accent-color);
+          background: rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(10px);
+          padding: 8px 20px;
+          border-radius: 25px;
+          margin-bottom: 30px;
+          display: inline-block;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          animation: promoPulse 2s infinite;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes promoPulse {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.05); opacity: 0.9; }
+        }
+
         .hero-section h1 {
-          font-family: 'Poppins', sans-serif;
+          font-family: 'Montserrat', sans-serif;
           font-size: 3.5rem;
           margin-bottom: 1.5rem;
           font-weight: 700;
@@ -280,15 +303,17 @@ export default function Home() {
         }
 
         .section-header h2 {
-          font-family: 'Poppins', sans-serif;
-          font-size: 2.8rem;
+          font-family: 'Bebas Neue', cursive;
+          font-size: 3.2rem;
           color: var(--neutral-800);
           margin-bottom: 1rem;
-          font-weight: 600;
+          font-weight: 400;
+          letter-spacing: 2px;
           background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-900) 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
+          text-transform: uppercase;
         }
 
         .section-header p {
@@ -314,7 +339,7 @@ export default function Home() {
         }
 
         .features-section h2 {
-          font-family: 'Poppins', sans-serif;
+          font-family: 'Montserrat', sans-serif;
           text-align: center;
           font-size: 2.8rem;
           color: var(--neutral-800);
@@ -384,7 +409,7 @@ export default function Home() {
           margin-bottom: 1rem;
           font-size: 1.4rem;
           font-weight: 600;
-          font-family: 'Poppins', sans-serif;
+          font-family: 'Montserrat', sans-serif;
         }
 
         .feature-card p {
@@ -476,7 +501,8 @@ export default function Home() {
           }
 
           .section-header h2 {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
+            letter-spacing: 1.5px;
           }
 
           .features-section {

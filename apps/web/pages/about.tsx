@@ -159,7 +159,7 @@ export default function About() {
           max-width: 1200px;
           margin: 0 auto;
           padding: 2rem;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         .hero-section {
@@ -175,6 +175,7 @@ export default function About() {
           font-size: 3rem;
           margin-bottom: 1rem;
           font-weight: 700;
+          font-family: 'Montserrat', sans-serif;
         }
 
         .hero-section p {
@@ -197,6 +198,7 @@ export default function About() {
           font-size: 2.5rem;
           color: #3F334D;
           margin-bottom: 2rem;
+          font-family: 'Montserrat', sans-serif;
         }
 
         .story-text p {
@@ -234,6 +236,7 @@ export default function About() {
           font-size: 2.5rem;
           color: #3F334D;
           margin-bottom: 3rem;
+          font-family: 'Montserrat', sans-serif;
         }
 
         .values-grid {
@@ -266,6 +269,7 @@ export default function About() {
           color: #3F334D;
           margin-bottom: 1rem;
           font-size: 1.25rem;
+          font-family: 'Montserrat', sans-serif;
         }
 
         .value-card p {
@@ -282,6 +286,7 @@ export default function About() {
           font-size: 2.5rem;
           color: #3F334D;
           margin-bottom: 3rem;
+          font-family: 'Montserrat', sans-serif;
         }
 
         .team-grid {
@@ -307,6 +312,7 @@ export default function About() {
         .team-member h3 {
           color: #3F334D;
           margin-bottom: 0.5rem;
+          font-family: 'Montserrat', sans-serif;
         }
 
         .team-member > p:first-of-type {
@@ -331,6 +337,7 @@ export default function About() {
           font-size: 2.5rem;
           color: #3F334D;
           margin-bottom: 1rem;
+          font-family: 'Montserrat', sans-serif;
         }
 
         .cta-section > p {

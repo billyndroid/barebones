@@ -178,7 +178,7 @@ export default function Contact() {
           max-width: 1200px;
           margin: 0 auto;
           padding: 2rem;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         .hero-section {
@@ -194,6 +194,7 @@ export default function Contact() {
           font-size: 3rem;
           margin-bottom: 1rem;
           font-weight: 700;
+          font-family: 'Montserrat', sans-serif;
         }
 
         .hero-section p {
@@ -214,6 +215,7 @@ export default function Contact() {
           font-size: 2rem;
           color: #3F334D;
           margin-bottom: 2rem;
+          font-family: 'Montserrat', sans-serif;
         }
 
         .info-cards {
@@ -241,6 +243,7 @@ export default function Contact() {
           color: #3F334D;
           margin-bottom: 0.5rem;
           font-size: 1.1rem;
+          font-family: 'Montserrat', sans-serif;
         }
 
         .info-card p {
@@ -253,6 +256,7 @@ export default function Contact() {
           color: #3F334D;
           margin-bottom: 1.5rem;
           font-size: 1.5rem;
+          font-family: 'Montserrat', sans-serif;
         }
 
         .faq-list {
@@ -275,6 +279,7 @@ export default function Contact() {
           color: #3F334D;
           background: #f8f9fa;
           border-bottom: 1px solid #e9ecef;
+          font-family: 'Montserrat', sans-serif;
         }
 
         .faq-item summary:hover {
